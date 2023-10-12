@@ -363,15 +363,20 @@ document.addEventListener("DOMContentLoaded", function() {
     
     downloadLink.addEventListener("click", function(event) {
         event.preventDefault();
-        var anchor = document.createElement("a");
-        anchor.style.display = "none";
-        anchor.href = githubRawURL;
-        anchor.download = "Aniket_Ghumed_Resume.pdf";
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
+        fetch(githubRawURL)
+            .then(response => response.blob())
+            .then(blob => {
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'Aniket_Ghumed_Resume.pdf';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            });
     });
 });
-</script>      
+</script>
   </body>
 </html>
