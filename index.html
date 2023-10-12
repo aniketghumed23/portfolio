@@ -52,7 +52,25 @@
       <div id="lead-content">
         <h1>Aniket Ghumed</h1>
         <h2>Software Engineer</h2>
-        <a href="https://github.com/aniketghumed23/portfolio/blob/main/Aniket_Ghumed_Resume.pdf" class="btn-rounded-white">Download Resume</a>
+        <a id="download-link" href="#" class="btn-rounded-white" download>Download Resume</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var downloadLink = document.getElementById("download-link");
+    var githubRawURL = "https://github.com/aniketghumed23/portfolio/raw/main/Aniket_Ghumed_Resume.pdf";
+    
+    downloadLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        var anchor = document.createElement("a");
+        anchor.style.display = "none";
+        anchor.href = githubRawURL;
+        anchor.download = "Aniket_Ghumed_Resume.pdf";
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    });
+});
+</script>      
       </div>
       <!-- End #lead-content -->
 
